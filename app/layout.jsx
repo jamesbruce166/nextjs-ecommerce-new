@@ -1,14 +1,21 @@
-import './globals.css'
+import '../styles/globals.css';
+import Navbar from '../components/common/Navbar';
+import Footer from '../components/common/Footer';
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
-      <body>{children}</body>
-    </html>
-  )
+	return (
+		<html lang='en'>
+			<head>
+				<meta
+					name='viewport'
+					content='width=device-width, initial-scale=1.0'
+				/>
+			</head>
+			<body className='bg-white text-black antialiased dark:bg-gray-900 dark:text-white'>
+				<Navbar />
+				{children}
+				<Footer />
+			</body>
+		</html>
+	);
 }

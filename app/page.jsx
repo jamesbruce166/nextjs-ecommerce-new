@@ -1,57 +1,34 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Link from 'next/link';
+import SingleStat from '$components/cards/SingleStat';
 
 export default function Home() {
-  return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js 13!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://beta.nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js 13</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Explore the Next.js 13 playground.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates/next.js/app-directory?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>Deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
-  )
+	return (
+		<div className='bg-white py-14 sm:py-20 lg:py-32'>
+			<div className='sm:text-center'>
+				<h2 className='text-lg font-semibold leading-8 text-indigo-600'>
+					Welcome
+				</h2>
+				<p className='mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
+					The best way to shop online
+				</p>
+				<p className='mx-auto my-6 max-w-2xl text-lg leading-8 text-gray-600'>
+					Lorem ipsum dolor sit amet consect adipisicing elit.
+					Possimus magnam voluptatum cupiditate veritatis in accusamus
+					quisquam.
+				</p>
+			</div>
+			<div className='flex gap-16 justify-center mt-6'>
+				<SingleStat stat='700K+' text='Unique Shoppers' />
+				<SingleStat stat='3M+' text='Products Sold' />
+			</div>
+			<div className='flex justify-center'>
+				<Link
+					className='bg-indigo-600 text-white rounded-md px-4 py-2 font-bold'
+					href='/products'
+				>
+					Shop Now
+				</Link>
+			</div>
+		</div>
+	);
 }
