@@ -8,7 +8,9 @@ import Rating from '$components/product/Rating';
 import { SkeletonCard } from '$components/cards/SkeletonCard';
 
 const fetchProduct = async (id) => {
-	const res = await fetch(`https://dummyjson.com/products/${id}`);
+	const res = await fetch(`https://dummyjson.com/products/${id}`, {
+		next: { revalidate: 60 },
+	});
 	return res.json();
 };
 

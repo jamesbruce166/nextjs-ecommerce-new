@@ -65,6 +65,87 @@ This **partial rendering** means that anything _above_ the segment in the curren
 
 How do you know whether your components is server-side or not? NextJS have a great example of this [here](https://beta.nextjs.org/docs/rendering/server-and-client-components#when-to-use-server-vs-client-components)
 
-My understanding on this, is that a server component
+My understanding on this, is that you should only use a client component when you need to apply interactivity, and event listeners, or you need browser-only API's such as hooks.
 
-##
+# Walkthrough
+
+## Project & Code Layout
+
+This project uses the following root folders:
+
+-   `app/`: Pages and URL Routes
+-   `components/`: UI Blocks & Components
+-   `pages/api/`: Build your API with NextJS
+-   `public/`: Public assets and images
+
+## JS Config
+
+By default, NextJS supports the use of the `jsconfig.json` file. Here, we can define shortcut paths to locations in our project for cleaner imports.
+
+## Root Layout and Page Directory, with Head component.
+
+At the route of the project, we have used the `layout`, `page`, and `head` file.
+
+The root layout holds the Navigation bar and the Footer - these will be passed through to every child view in the app.
+
+![main content](img/maincontent.png)
+
+## Analytics Component
+
+Analytical components can be added to the root layout and will cascade through the whole application. Most of these, like the one from `vercel`, use browser API's and cannot be server components. It is ideal to keep the root layout a server component where possible, and therefore we can get around this by wrapping the analytics in our own components and makinng that a client component.
+
+## Route Grouping with Login and Register Layout
+
+We can see an example of nested layouts with the login and register routes - where the card is the only component that changes, the welcome message remains in the layout. This means that switching between these routes only renders what it needs to.
+
+## Main product screen
+
+Heading to the main product page, we can fetch data and render it in a section defined in the layout page.
+
+![Product content](img/rootlayout.png)
+
+## Dynamic Routes
+
+Using information from the product, we can push dynamic routes via the `uid`.
+
+## Data Fetching & Caching
+
+We can fetch data within the components using `fetch`, and manage the cache of each.
+
+Fetch with nextjs supports the following caching methods.
+
+Default, cache
+
+```json
+{ "cache": "force-cache" }
+```
+
+No cache
+
+```json
+{ "cache": "no-store" }
+```
+
+Revalidate
+
+```json
+{ "next": { "revalidate": 60 } }
+```
+
+## Loading Files & Suspense Boundaries
+
+We can load entire pages with the `loading` file. Conversely, we can target individual components with the `suspense` boundary.
+
+## Head Files
+
+We can now modify the `<head>` tag for each page using the `head` file. This is useful in dynamic routes.
+
+## Not-Found Files
+
+The 404 notFound error can now be caught and managed by adding a `not-found` file to the relevant directory, this has been added to the dynamic routing for navigating to products that do not exist.
+
+## API Folder
+
+We can also define our API within the NextJS code, these API functions are split into Lambda functions and deistrubuted across the server.
+
+These can be defined in the `pages/api/` folder.
