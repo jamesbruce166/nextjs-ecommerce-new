@@ -1,12 +1,11 @@
 import { Suspense } from 'react';
+import { notFound } from 'next/navigation';
 
 import ReviewSection from '$components/product/ReviewSection';
 import ImagePicker from '$components/product/ImagePicker';
 import ProductPrice from '$components/product/ProductPrice';
 import Rating from '$components/product/Rating';
 import { SkeletonCard } from '$components/cards/SkeletonCard';
-
-const shimmer = `relative overflow-hidden rounded-xl before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent`;
 
 const fetchProduct = async (id) => {
 	const res = await fetch(`https://dummyjson.com/products/${id}`);
@@ -34,6 +33,8 @@ const LoadingReviews = () => {
 
 const ProductPage = async ({ params }) => {
 	const product = await fetchProduct(params.product);
+	if (!product?.title) return notFound();
+
 	const {
 		title,
 		description,
@@ -42,8 +43,7 @@ const ProductPage = async ({ params }) => {
 		rating,
 		thumbnail,
 		images,
-		category,
-	} = product;
+	} = { ...product };
 
 	return (
 		<div className='flex flex-col gap-6'>
