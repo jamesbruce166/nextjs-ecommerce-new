@@ -7,8 +7,8 @@ const ProductCard = ({ product }) => {
 			href={`/products/${product.id}`}
 			className='group flex flex-col justify-between'
 		>
-			<div className='flex items-center'>
-				<div className='h-60 w-60 relative'>
+			<div className='flex items-center justify-center'>
+				<div className='h-64 w-64 relative'>
 					<Image
 						src={product.thumbnail}
 						alt={product.title}
@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
 					/>
 				</div>
 			</div>
-			<div className='flex flex-row justify-between'>
+			<div className='flex flex-row justify-center'>
 				<div className='flex flex-col justify-start'>
 					<h3 className='mt-4 text-sm text-gray-700'>
 						{product.title}

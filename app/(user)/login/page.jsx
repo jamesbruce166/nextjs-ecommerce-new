@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import TextField from '$components/Form/TextField';
+import TextField from '$components/form/TextField';
 
 const Login = () => {
 	return (

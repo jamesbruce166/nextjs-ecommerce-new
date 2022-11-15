@@ -7,7 +7,7 @@ const ProductPrice = ({ price, discountPercentage }) => {
 
 	return (
 		<div className='relative block overflow-hidden rounded-lg border border-gray-100 p-8 shadow-lg'>
-			<span class='absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-blue-300 via-blue-500 to-purple-600'></span>
+			<span className='absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-blue-300 via-blue-500 to-purple-600'></span>
 			<div className='flex'>
 				<div className='rounded bg-[#c42e4a] px-1 text-xs text-pink-100'>
 					Expires soon!

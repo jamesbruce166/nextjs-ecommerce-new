@@ -2,6 +2,9 @@ import ProductCard from '$components/product/ProductCard';
 import CategoryFilter from '$components/product/CategoryFilter';
 
 const getProducts = async () => {
+	// artificial delay
+	await new Promise((resolve) => setTimeout(resolve, 3000));
+
 	const url = `https://dummyjson.com/products?select=title,price,thumbnail`;
 	const res = await fetch(url);
 	return res.json();
