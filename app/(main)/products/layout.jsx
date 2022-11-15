@@ -1,11 +1,5 @@
-import { FilterProvider } from './FilterContext';
-
 const ProductsLayout = ({ children }) => {
-	return (
-		<section>
-			<FilterProvider>{children}</FilterProvider>
-		</section>
-	);
+	return <section>{children}</section>;
 };
 
 export default ProductsLayout;

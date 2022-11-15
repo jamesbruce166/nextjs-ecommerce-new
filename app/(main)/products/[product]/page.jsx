@@ -33,7 +33,7 @@ const LoadingReviews = () => {
 
 const ProductPage = async ({ params }) => {
 	const product = await fetchProduct(params.product);
-	if (!product?.title) return notFound();
+	if (!product?.id) return notFound();
 
 	const {
 		title,
