@@ -17,7 +17,7 @@ const nextConfig = {
 	},
 	images: {
 		dangerouslyAllowSVG: true,
-		domains: ['images.unsplash.com', 'tailwindui.com'],
+		domains: ['images.unsplash.com', 'tailwindui.com', 'dummyjson.com'],
 	},
 };
 

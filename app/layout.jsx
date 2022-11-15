@@ -11,9 +11,9 @@ export default function RootLayout({ children }) {
 					content='width=device-width, initial-scale=1.0'
 				/>
 			</head>
-			<body className='bg-white text-black antialiased dark:bg-gray-900 dark:text-white'>
+			<body className='flex flex-col bg-white text-black antialiased dark:bg-gray-900 dark:text-white'>
 				<Navbar />
-				{children}
+				<div className='min-h-[calc(60vh)]'>{children}</div>
 				<Footer />
 			</body>
 		</html>
