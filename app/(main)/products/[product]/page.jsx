@@ -1,8 +1,10 @@
 import { Suspense } from 'react';
 
+import ReviewSection from '$components/product/ReviewSection';
 import ImagePicker from '$components/product/ImagePicker';
 import ProductPrice from '$components/product/ProductPrice';
 import Rating from '$components/product/Rating';
+import { SkeletonCard } from '$components/cards/SkeletonCard';
 
 const shimmer = `relative overflow-hidden rounded-xl before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent`;
 
@@ -11,13 +13,24 @@ const fetchProduct = async (id) => {
 	return res.json();
 };
 
-function PricingSkeleton() {
+const LoadingReviews = () => {
 	return (
-		<div
-			className={`h-[161px] space-y-4 rounded-lg bg-gray-800 ${shimmer}`}
-		></div>
+		<div className='grid grid-cols-2 gap-6 px-8'>
+			<div className='col-span-1'>
+				<SkeletonCard />
+			</div>
+			<div className='col-span-1'>
+				<SkeletonCard />
+			</div>
+			<div className='col-span-1'>
+				<SkeletonCard />
+			</div>
+			<div className='col-span-1'>
+				<SkeletonCard />
+			</div>
+		</div>
 	);
-}
+};
 
 const ProductPage = async ({ params }) => {
 	const product = await fetchProduct(params.product);
@@ -33,7 +46,7 @@ const ProductPage = async ({ params }) => {
 	} = product;
 
 	return (
-		<>
+		<div className='flex flex-col gap-6'>
 			<div className='grid grid-cols-12 gap-6'>
 				<div className='col-span-5'>
 					<ImagePicker thumbnail={thumbnail} images={images} />
@@ -54,15 +67,21 @@ const ProductPage = async ({ params }) => {
 				</div>
 
 				<div className='col-span-3'>
-					<Suspense fallback={<PricingSkeleton />}>
-						<ProductPrice
-							price={price}
-							discountPercentage={discountPercentage}
-						/>
-					</Suspense>
+					<ProductPrice
+						price={price}
+						discountPercentage={discountPercentage}
+					/>
 				</div>
 			</div>
-		</>
+
+			<h2 className='mt-16 text-xl font-bold sm:text-2xl text-center'>
+				Customer Reviews
+			</h2>
+
+			<Suspense fallback={<LoadingReviews />}>
+				<ReviewSection />
+			</Suspense>
+		</div>
 	);
 };
 
